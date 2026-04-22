@@ -1,49 +1,61 @@
-<!-- FGT SCHOOL SEARCH WIDGET v2 — paste this entire block into your Classy custom HTML element -->
-<div id="fgt-sw" style="all:initial;display:block;font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;width:100%;max-width:620px;margin:0 auto;box-sizing:border-box"></div>
-
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>FGT School Search</title>
 <style>
-#fgt-sw *{box-sizing:border-box!important;font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif!important}
-#fgt-sw input{width:100%!important;padding:11px 16px 11px 42px!important;font-size:15px!important;border:1px solid #ccc!important;border-radius:12px!important;background:#fff!important;color:#111!important;outline:none!important;display:block!important;appearance:none!important;-webkit-appearance:none!important;line-height:normal!important}
-#fgt-sw input:focus{border-color:#378ADD!important;box-shadow:0 0 0 3px rgba(55,138,221,0.12)!important}
-#fgt-sw .fgt-search-wrap{position:relative;margin-bottom:1rem}
-#fgt-sw .fgt-icon{position:absolute;left:13px;top:50%;transform:translateY(-50%);color:#888;pointer-events:none;display:flex}
-#fgt-sw .fgt-sugg{background:#fff;border:1px solid #ccc;border-radius:12px;margin-top:4px;overflow:hidden}
-#fgt-sw .fgt-si{padding:10px 16px;font-size:14px!important;cursor:pointer;color:#111!important;border-bottom:1px solid #eee}
-#fgt-sw .fgt-si:last-child{border-bottom:none}
-#fgt-sw .fgt-si:hover{background:#f5f5f5}
-#fgt-sw .fgt-sn{font-weight:600;font-size:14px!important;color:#111!important}
-#fgt-sw .fgt-ss{font-size:12px!important;color:#666!important;margin-top:2px}
-#fgt-sw .fgt-card{background:#fff;border:1px solid #e0e0e0;border-radius:12px;overflow:hidden;margin-top:4px}
-#fgt-sw .fgt-ch{padding:1.25rem;border-bottom:1px solid #eee}
-#fgt-sw .fgt-cht{display:flex;align-items:flex-start;justify-content:space-between;gap:12px;margin-bottom:10px}
-#fgt-sw .fgt-name{font-size:17px!important;font-weight:600!important;color:#111!important;line-height:1.3}
-#fgt-sw .fgt-meta{font-size:13px!important;color:#666!important;margin-top:3px}
-#fgt-sw .fgt-badge{background:#E1F5EE;border-radius:20px;padding:4px 12px;font-size:12px!important;font-weight:600!important;color:#085041!important;white-space:nowrap;flex-shrink:0}
-#fgt-sw .fgt-yrs{font-size:13px!important;color:#0F6E56!important;margin-top:8px;display:flex;align-items:center;gap:6px}
-#fgt-sw .fgt-fd{background:#E6F1FB;padding:10px 1.25rem;display:flex;align-items:center;gap:8px;font-size:13px!important;color:#0C447C!important;border-bottom:1px solid #eee}
-#fgt-sw .fgt-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:10px;padding:1.25rem;border-bottom:1px solid #eee}
-#fgt-sw .fgt-stat{background:#f7f7f7;border-radius:8px;padding:12px 14px}
-#fgt-sw .fgt-sl{font-size:12px!important;color:#666!important;margin-bottom:6px}
-#fgt-sw .fgt-sv{font-size:22px!important;font-weight:600!important;color:#111!important}
-#fgt-sw .fgt-su{font-size:11px!important;color:#888!important;margin-top:3px}
-#fgt-sw .fgt-about{padding:1rem 1.25rem;border-bottom:1px solid #eee;font-size:13px!important;color:#555!important;line-height:1.6!important}
-#fgt-sw .fgt-foot{padding:1rem 1.25rem;display:flex;align-items:center;justify-content:space-between;gap:12px;flex-wrap:wrap}
-#fgt-sw .fgt-disc{font-size:12px!important;color:#999!important;line-height:1.5!important;flex:1}
-#fgt-sw .fgt-btn{padding:10px 22px!important;font-size:14px!important;font-weight:600!important;background:#185FA5!important;color:#fff!important;border:none!important;border-radius:8px!important;cursor:pointer!important;white-space:nowrap;text-decoration:none!important;display:inline-block!important}
-#fgt-sw .fgt-btn:hover{background:#0C447C!important}
-#fgt-sw .fgt-nf{background:#fff;border:1px solid #e0e0e0;border-radius:12px;padding:1.5rem 1.25rem;margin-top:4px;text-align:center}
-#fgt-sw .fgt-nfi{width:44px;height:44px;border-radius:50%;background:#f5f5f5;display:flex;align-items:center;justify-content:center;margin:0 auto 12px}
-#fgt-sw .fgt-nft{font-size:15px!important;font-weight:600!important;color:#111!important;margin-bottom:6px}
-#fgt-sw .fgt-nfb{font-size:13px!important;color:#666!important;line-height:1.6!important;margin-bottom:1.25rem}
-@media(max-width:480px){#fgt-sw .fgt-grid{grid-template-columns:repeat(2,minmax(0,1fr))!important}#fgt-sw .fgt-cht{flex-direction:column!important}}
+body { margin: 0; padding: 12px; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; }
+* { box-sizing: border-box; }
+
+#fgt-sw { width: 100%; }
+#fgt-sw input { width: 100%; padding: 11px 16px 11px 42px; font-size: 15px; border: 1px solid #ccc; border-radius: 12px; background: #fff; color: #111; outline: none; display: block; appearance: none; -webkit-appearance: none; }
+#fgt-sw input:focus { border-color: #378ADD; box-shadow: 0 0 0 3px rgba(55,138,221,0.12); }
+#fgt-sw .fgt-search-wrap { position: relative; margin-bottom: 0; }
+#fgt-sw .fgt-icon { position: absolute; left: 13px; top: 50%; transform: translateY(-50%); color: #888; pointer-events: none; display: flex; }
+#fgt-sw .fgt-sugg { background: #fff; border: 1px solid #ccc; border-radius: 12px; margin-top: 4px; overflow: hidden; }
+#fgt-sw .fgt-si { padding: 10px 16px; font-size: 14px; cursor: pointer; color: #111; border-bottom: 1px solid #eee; }
+#fgt-sw .fgt-si:last-child { border-bottom: none; }
+#fgt-sw .fgt-si:hover { background: #f5f5f5; }
+#fgt-sw .fgt-sn { font-weight: 600; font-size: 14px; color: #111; }
+#fgt-sw .fgt-ss { font-size: 12px; color: #666; margin-top: 2px; }
+#fgt-sw .fgt-card { background: #fff; border: 1px solid #e0e0e0; border-radius: 12px; overflow: hidden; margin-top: 8px; }
+#fgt-sw .fgt-ch { padding: 1.25rem; border-bottom: 1px solid #eee; }
+#fgt-sw .fgt-cht { display: flex; align-items: flex-start; justify-content: space-between; gap: 12px; margin-bottom: 10px; }
+#fgt-sw .fgt-name { font-size: 17px; font-weight: 600; color: #111; line-height: 1.3; }
+#fgt-sw .fgt-meta { font-size: 13px; color: #666; margin-top: 3px; }
+#fgt-sw .fgt-badge { background: #E1F5EE; border-radius: 20px; padding: 4px 12px; font-size: 12px; font-weight: 600; color: #085041; white-space: nowrap; flex-shrink: 0; }
+#fgt-sw .fgt-yrs { font-size: 13px; color: #0F6E56; margin-top: 8px; display: flex; align-items: center; gap: 6px; }
+#fgt-sw .fgt-fd { background: #E6F1FB; padding: 10px 1.25rem; display: flex; align-items: center; gap: 8px; font-size: 13px; color: #0C447C; border-bottom: 1px solid #eee; }
+#fgt-sw .fgt-grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 10px; padding: 1.25rem; border-bottom: 1px solid #eee; }
+#fgt-sw .fgt-stat { background: #f7f7f7; border-radius: 8px; padding: 12px 14px; }
+#fgt-sw .fgt-sl { font-size: 12px; color: #666; margin-bottom: 6px; }
+#fgt-sw .fgt-sv { font-size: 22px; font-weight: 600; color: #111; }
+#fgt-sw .fgt-su { font-size: 11px; color: #888; margin-top: 3px; }
+#fgt-sw .fgt-about { padding: 1rem 1.25rem; border-bottom: 1px solid #eee; font-size: 13px; color: #555; line-height: 1.6; }
+#fgt-sw .fgt-foot { padding: 1rem 1.25rem; display: flex; align-items: center; justify-content: space-between; gap: 12px; flex-wrap: wrap; }
+#fgt-sw .fgt-disc { font-size: 12px; color: #999; line-height: 1.5; flex: 1; }
+#fgt-sw .fgt-btn { padding: 10px 22px; font-size: 14px; font-weight: 600; background: #185FA5; color: #fff; border: none; border-radius: 8px; cursor: pointer; white-space: nowrap; text-decoration: none; display: inline-block; }
+#fgt-sw .fgt-btn:hover { background: #0C447C; }
+#fgt-sw .fgt-nf { background: #fff; border: 1px solid #e0e0e0; border-radius: 12px; padding: 1.5rem 1.25rem; margin-top: 8px; text-align: center; }
+#fgt-sw .fgt-nfi { width: 44px; height: 44px; border-radius: 50%; background: #f5f5f5; display: flex; align-items: center; justify-content: center; margin: 0 auto 12px; }
+#fgt-sw .fgt-nft { font-size: 15px; font-weight: 600; color: #111; margin-bottom: 6px; }
+#fgt-sw .fgt-nfb { font-size: 13px; color: #666; line-height: 1.6; margin-bottom: 1.25rem; }
+@media (max-width: 480px) {
+  #fgt-sw .fgt-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  #fgt-sw .fgt-cht { flex-direction: column; }
+}
 </style>
+</head>
+<body>
+<div id="fgt-sw"></div>
 
 <script>
 (function(){
-  var W=document.getElementById('fgt-sw');
-  var DONATE_URL='https://YOUR-CLASSY-LINK-HERE.com';
-  var TOTAL=203;
-  var SCHOOLS=[
+  var W = document.getElementById('fgt-sw');
+  var DONATE_URL = 'https://YOUR-CLASSY-LINK-HERE.com';
+  var TOTAL = 203;
+  var SCHOOLS = [
     {name:'Lincoln Elementary',city:'San Jose',county:'Santa Clara',district:'San Jose Unified School District',level:'Elementary (K–5)',firstDay:'August 13, 2025',yrs:7,enroll:412,li:89,el:64},
     {name:'Roosevelt Middle School',city:'San Jose',county:'Santa Clara',district:'East Side Union High School District',level:'Middle (6–8)',firstDay:'August 13, 2025',yrs:4,enroll:687,li:82,el:31},
     {name:'Oakland High School',city:'Oakland',county:'Alameda',district:'Oakland Unified School District',level:'High (9–12)',firstDay:'August 12, 2025',yrs:9,enroll:1204,li:77,el:22},
@@ -52,79 +64,99 @@
     {name:'Richmond High School',city:'Richmond',county:'Contra Costa',district:'West Contra Costa Unified School District',level:'High (9–12)',firstDay:'August 14, 2025',yrs:5,enroll:1456,li:83,el:28}
   ];
 
-  W.innerHTML=
-    '<div class="fgt-search-wrap">'+
-      '<svg class="fgt-icon" width="16" height="16" viewBox="0 0 16 16" fill="none"><circle cx="6.5" cy="6.5" r="4.5" stroke="currentColor" stroke-width="1.3"/><path d="M10 10l3 3" stroke="currentColor" stroke-width="1.3" stroke-linecap="round"/></svg>'+
-      '<input type="text" id="fgt-input" placeholder="Search for your school by name or city…" autocomplete="off">'+
-    '</div>'+
-    '<div id="fgt-sugg" style="display:none"></div>'+
+  W.innerHTML =
+    '<div class="fgt-search-wrap">' +
+      '<svg class="fgt-icon" width="16" height="16" viewBox="0 0 16 16" fill="none"><circle cx="6.5" cy="6.5" r="4.5" stroke="currentColor" stroke-width="1.3"/><path d="M10 10l3 3" stroke="currentColor" stroke-width="1.3" stroke-linecap="round"/></svg>' +
+      '<input type="text" id="fgt-input" placeholder="Search for your school by name or city…" autocomplete="off">' +
+    '</div>' +
+    '<div id="fgt-sugg" style="display:none"></div>' +
     '<div id="fgt-res"></div>';
 
-  var inp=document.getElementById('fgt-input');
-  var sugg=document.getElementById('fgt-sugg');
-  var res=document.getElementById('fgt-res');
-  var active=null;
-  var matches=[];
+  var inp = document.getElementById('fgt-input');
+  var sugg = document.getElementById('fgt-sugg');
+  var res = document.getElementById('fgt-res');
+  var active = null;
+  var matches = [];
 
-  inp.addEventListener('input',function(){
-    var q=inp.value.trim().toLowerCase();
-    sugg.style.display='none';
-    if(q.length<2){if(!active)res.innerHTML='';return;}
-    matches=SCHOOLS.filter(function(s){return s.name.toLowerCase().includes(q)||s.city.toLowerCase().includes(q);});
-    if(!matches.length){showNF(inp.value.trim());active=null;return;}
-    res.innerHTML='';active=null;
-    sugg.innerHTML=matches.map(function(s,i){
-      return '<div class="fgt-si" data-i="'+i+'"><div class="fgt-sn">'+s.name+'</div><div class="fgt-ss">'+s.city+', '+s.county+' County &middot; '+s.level+'</div></div>';
+  // ── Report height to parent iframe ──
+  function reportHeight() {
+    var h = document.body.scrollHeight;
+    window.parent.postMessage({ height: h }, '*');
+  }
+
+  // Report on load
+  window.addEventListener('load', reportHeight);
+
+  // Watch for DOM changes and report height
+  if (window.MutationObserver) {
+    var observer = new MutationObserver(function() {
+      setTimeout(reportHeight, 100);
+    });
+    observer.observe(document.body, { childList: true, subtree: true });
+  }
+
+  inp.addEventListener('input', function(){
+    var q = inp.value.trim().toLowerCase();
+    sugg.style.display = 'none';
+    if (q.length < 2) { if (!active) res.innerHTML = ''; reportHeight(); return; }
+    matches = SCHOOLS.filter(function(s){
+      return s.name.toLowerCase().includes(q) || s.city.toLowerCase().includes(q);
+    });
+    if (!matches.length) { showNF(inp.value.trim()); active = null; return; }
+    res.innerHTML = ''; active = null;
+    sugg.innerHTML = matches.map(function(s, i){
+      return '<div class="fgt-si" data-i="' + i + '"><div class="fgt-sn">' + s.name + '</div><div class="fgt-ss">' + s.city + ', ' + s.county + ' County &middot; ' + s.level + '</div></div>';
     }).join('');
-    sugg.style.display='block';
+    sugg.style.display = 'block';
     sugg.querySelectorAll('.fgt-si').forEach(function(el){
-      el.addEventListener('click',function(){pick(parseInt(el.dataset.i));});
+      el.addEventListener('click', function(){ pick(parseInt(el.dataset.i)); });
     });
   });
 
-  function pick(i){
-    active=matches[i];
-    inp.value=active.name;
-    sugg.style.display='none';
+  function pick(i) {
+    active = matches[i];
+    inp.value = active.name;
+    sugg.style.display = 'none';
     showSchool(active);
   }
 
-  function showSchool(s){
-    var sinceYear=2025-s.yrs+1;
-    var yt=s.yrs===1?'1 year':s.yrs+' years';
-    var lic=Math.round(s.enroll*s.li/100).toLocaleString();
-    res.innerHTML=
-      '<div class="fgt-card">'+
-        '<div class="fgt-ch">'+
-          '<div class="fgt-cht">'+
-            '<div><div class="fgt-name">'+s.name+'</div><div class="fgt-meta">'+s.city+', '+s.county+' County &nbsp;&middot;&nbsp; '+s.level+'<br>'+s.district+'</div></div>'+
-            '<div class="fgt-badge">FGT Partner</div>'+
-          '</div>'+
-          '<div class="fgt-yrs"><svg width="14" height="14" viewBox="0 0 14 14" fill="none"><circle cx="7" cy="7" r="6" stroke="#0F6E56" stroke-width="1.3"/><path d="M7 4v3.5l2 1.5" stroke="#0F6E56" stroke-width="1.3" stroke-linecap="round"/></svg>FGT has partnered with this school for <strong>'+yt+'</strong>, since '+sinceYear+'.</div>'+
-        '</div>'+
-        '<div class="fgt-fd"><svg width="14" height="14" viewBox="0 0 14 14" fill="none"><rect x="1" y="2" width="12" height="11" rx="2" stroke="#185FA5" stroke-width="1.3"/><path d="M1 6h12" stroke="#185FA5" stroke-width="1.3"/><path d="M4 1v2M10 1v2" stroke="#185FA5" stroke-width="1.3" stroke-linecap="round"/></svg>First day of school: <strong style="margin-left:4px">'+s.firstDay+'</strong></div>'+
-        '<div class="fgt-grid">'+
-          '<div class="fgt-stat"><div class="fgt-sl">Students supported</div><div class="fgt-sv">'+s.enroll.toLocaleString()+'</div><div class="fgt-su">enrolled students</div></div>'+
-          '<div class="fgt-stat"><div class="fgt-sl">Low-income students</div><div class="fgt-sv">'+s.li+'%</div><div class="fgt-su">of student body</div></div>'+
-          '<div class="fgt-stat"><div class="fgt-sl">English learners</div><div class="fgt-sv">'+s.el+'%</div><div class="fgt-su">of student body</div></div>'+
-        '</div>'+
-        '<div class="fgt-about">Your donation helps provide backpacks and school supplies to all <strong>'+s.enroll.toLocaleString()+' students</strong> at '+s.name+' — '+lic+' of whom qualify as low-income. Gifts to the 2025 Back-to-School Drive support FGT\'s '+yt+' partnership with this school and all '+TOTAL+' recipient schools and organizations across California.</div>'+
-        '<div class="fgt-foot">'+
-          '<div class="fgt-disc">Gifts are not designated to a specific school — your donation supports all students across FGT\'s 2025 Back-to-School Drive.</div>'+
-          '<a class="fgt-btn" href="'+DONATE_URL+'" target="_blank" rel="noopener">Donate to the drive</a>'+
-        '</div>'+
+  function showSchool(s) {
+    var sinceYear = 2025 - s.yrs + 1;
+    var yt = s.yrs === 1 ? '1 year' : s.yrs + ' years';
+    var lic = Math.round(s.enroll * s.li / 100).toLocaleString();
+    res.innerHTML =
+      '<div class="fgt-card">' +
+        '<div class="fgt-ch">' +
+          '<div class="fgt-cht">' +
+            '<div><div class="fgt-name">' + s.name + '</div><div class="fgt-meta">' + s.city + ', ' + s.county + ' County &nbsp;&middot;&nbsp; ' + s.level + '<br>' + s.district + '</div></div>' +
+            '<div class="fgt-badge">FGT Partner</div>' +
+          '</div>' +
+          '<div class="fgt-yrs"><svg width="14" height="14" viewBox="0 0 14 14" fill="none"><circle cx="7" cy="7" r="6" stroke="#0F6E56" stroke-width="1.3"/><path d="M7 4v3.5l2 1.5" stroke="#0F6E56" stroke-width="1.3" stroke-linecap="round"/></svg>FGT has partnered with this school for <strong>' + yt + '</strong>, since ' + sinceYear + '.</div>' +
+        '</div>' +
+        '<div class="fgt-fd"><svg width="14" height="14" viewBox="0 0 14 14" fill="none"><rect x="1" y="2" width="12" height="11" rx="2" stroke="#185FA5" stroke-width="1.3"/><path d="M1 6h12" stroke="#185FA5" stroke-width="1.3"/><path d="M4 1v2M10 1v2" stroke="#185FA5" stroke-width="1.3" stroke-linecap="round"/></svg>First day of school: <strong style="margin-left:4px">' + s.firstDay + '</strong></div>' +
+        '<div class="fgt-grid">' +
+          '<div class="fgt-stat"><div class="fgt-sl">Students supported</div><div class="fgt-sv">' + s.enroll.toLocaleString() + '</div><div class="fgt-su">enrolled students</div></div>' +
+          '<div class="fgt-stat"><div class="fgt-sl">Low-income students</div><div class="fgt-sv">' + s.li + '%</div><div class="fgt-su">of student body</div></div>' +
+          '<div class="fgt-stat"><div class="fgt-sl">English learners</div><div class="fgt-sv">' + s.el + '%</div><div class="fgt-su">of student body</div></div>' +
+        '</div>' +
+        '<div class="fgt-about">Your donation helps provide backpacks and school supplies to all <strong>' + s.enroll.toLocaleString() + ' students</strong> at ' + s.name + ' — ' + lic + ' of whom qualify as low-income. Gifts to the 2025 Back-to-School Drive support FGT\'s ' + yt + ' partnership with this school and all ' + TOTAL + ' recipient schools and organizations across California.</div>' +
+        '<div class="fgt-foot">' +
+          '<div class="fgt-disc">Gifts are not designated to a specific school — your donation supports all students across FGT\'s 2025 Back-to-School Drive.</div>' +
+          '<a class="fgt-btn" href="' + DONATE_URL + '" target="_blank" rel="noopener">Donate to the drive</a>' +
+        '</div>' +
       '</div>';
   }
 
-  function showNF(q){
-    res.innerHTML=
-      '<div class="fgt-nf">'+
-        '<div class="fgt-nfi"><svg width="20" height="20" viewBox="0 0 20 20" fill="none"><circle cx="10" cy="10" r="8" stroke="#999" stroke-width="1.4"/><path d="M10 6v5" stroke="#999" stroke-width="1.4" stroke-linecap="round"/><circle cx="10" cy="13.5" r="0.75" fill="#999"/></svg></div>'+
-        '<div class="fgt-nft">We\'re not partnering with "'+q+'" this year</div>'+
-        '<div class="fgt-nfb">FGT\'s 2025 Back-to-School Drive supports '+TOTAL+' schools and organizations across California.<br>Your donation still makes a difference for thousands of students in your community.</div>'+
-        '<a class="fgt-btn" href="'+DONATE_URL+'" target="_blank" rel="noopener">Donate to the drive</a>'+
+  function showNF(q) {
+    res.innerHTML =
+      '<div class="fgt-nf">' +
+        '<div class="fgt-nfi"><svg width="20" height="20" viewBox="0 0 20 20" fill="none"><circle cx="10" cy="10" r="8" stroke="#999" stroke-width="1.4"/><path d="M10 6v5" stroke="#999" stroke-width="1.4" stroke-linecap="round"/><circle cx="10" cy="13.5" r="0.75" fill="#999"/></svg></div>' +
+        '<div class="fgt-nft">We\'re not partnering with "' + q + '" this year</div>' +
+        '<div class="fgt-nfb">FGT\'s 2025 Back-to-School Drive supports ' + TOTAL + ' schools and organizations across California.<br>Your donation still makes a difference for thousands of students in your community.</div>' +
+        '<a class="fgt-btn" href="' + DONATE_URL + '" target="_blank" rel="noopener">Donate to the drive</a>' +
       '</div>';
   }
 })();
 </script>
-<!-- END FGT SCHOOL SEARCH WIDGET -->
+</body>
+</html>
