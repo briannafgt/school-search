@@ -1,0 +1,253 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>FGT School Search</title>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    font-family: 'Poppins', sans-serif;
+    background: #fff;
+    padding: 0;
+    overflow: hidden;
+  }
+
+  /* ── SEARCH ── */
+  .search-wrap { position: relative; margin-bottom: 0; }
+
+  .search-icon {
+    position: absolute;
+    left: 13px;
+    top: 50%;
+    transform: translateY(-50%);
+    color: #888;
+    pointer-events: none;
+    display: flex;
+  }
+
+  input {
+    width: 100%;
+    padding: 12px 16px 12px 42px;
+    font-size: 15px;
+    font-family: 'Poppins', sans-serif;
+    border: 1.5px solid #ccc;
+    border-radius: 10px;
+    background: #fff;
+    color: #111;
+    outline: none;
+    display: block;
+    -webkit-appearance: none;
+    transition: border-color 0.2s, box-shadow 0.2s;
+  }
+
+  input:focus {
+    border-color: rgb(0, 151, 197);
+    box-shadow: 0 0 0 3px rgba(0, 151, 197, 0.12);
+  }
+
+  /* ── SUGGESTIONS ── */
+  .suggestions {
+    background: #fff;
+    border: 1px solid #ddd;
+    border-radius: 10px;
+    margin-top: 6px;
+    overflow: hidden;
+    display: none;
+  }
+
+  .suggestion-item {
+    padding: 10px 16px;
+    cursor: pointer;
+    border-bottom: 1px solid #f0f0f0;
+  }
+
+  .suggestion-item:last-child { border-bottom: none; }
+  .suggestion-item:hover { background: #f5f5f5; }
+  .suggestion-name { font-weight: 600; font-size: 14px; color: #111; }
+  .suggestion-sub { font-size: 12px; color: #666; margin-top: 2px; }
+
+  /* ── RESULT CARD ── */
+  .card {
+    background: #fff;
+    border: 1px solid #e0e0e0;
+    border-radius: 12px;
+    overflow: hidden;
+    margin-top: 10px;
+  }
+
+  .card-head { padding: 1.1rem 1.25rem; border-bottom: 1px solid #eee; }
+  .card-top { display: flex; align-items: flex-start; justify-content: space-between; gap: 12px; margin-bottom: 10px; }
+  .school-name { font-size: 17px; font-weight: 700; color: #111; line-height: 1.3; }
+  .school-meta { font-size: 13px; color: #666; margin-top: 3px; }
+  .badge { background: #E1F5EE; border-radius: 20px; padding: 4px 12px; font-size: 12px; font-weight: 600; color: #085041; white-space: nowrap; flex-shrink: 0; }
+  .partnership { font-size: 13px; color: #0F6E56; margin-top: 6px; display: flex; align-items: center; gap: 6px; }
+
+  .first-day { background: #E6F1FB; padding: 10px 1.25rem; display: flex; align-items: center; gap: 8px; font-size: 13px; color: #0C447C; border-bottom: 1px solid #eee; }
+
+  .stats-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; padding: 1.1rem 1.25rem; border-bottom: 1px solid #eee; }
+  .stat-box { background: #f7f7f7; border-radius: 8px; padding: 10px 12px; }
+  .stat-label { font-size: 11px; color: #666; margin-bottom: 5px; }
+  .stat-value { font-size: 20px; font-weight: 700; color: #111; }
+  .stat-unit { font-size: 11px; color: #888; margin-top: 2px; }
+
+  .about { padding: 0.9rem 1.25rem; border-bottom: 1px solid #eee; font-size: 13px; color: #555; line-height: 1.6; }
+
+  .card-foot { padding: 0.9rem 1.25rem; display: flex; align-items: center; justify-content: space-between; gap: 12px; flex-wrap: wrap; }
+  .disclaimer { font-size: 12px; color: #999; line-height: 1.5; flex: 1; }
+  .donate-btn { padding: 10px 20px; font-size: 14px; font-weight: 600; background: rgb(0, 151, 197); color: #fff; border: none; border-radius: 8px; cursor: pointer; white-space: nowrap; text-decoration: none; display: inline-block; font-family: 'Poppins', sans-serif; }
+  .donate-btn:hover { background: #007fa8; }
+
+  /* ── NOT FOUND ── */
+  .not-found { background: #fff; border: 1px solid #e0e0e0; border-radius: 12px; padding: 1.5rem 1.25rem; margin-top: 10px; text-align: center; }
+  .nf-icon { width: 44px; height: 44px; border-radius: 50%; background: #f5f5f5; display: flex; align-items: center; justify-content: center; margin: 0 auto 12px; }
+  .nf-title { font-size: 15px; font-weight: 600; color: #111; margin-bottom: 6px; }
+  .nf-body { font-size: 13px; color: #666; line-height: 1.6; margin-bottom: 1.25rem; }
+
+  @media (max-width: 480px) {
+    .stats-grid { grid-template-columns: repeat(2, 1fr); }
+    .card-top { flex-direction: column; }
+  }
+</style>
+</head>
+<body>
+
+<div class="search-wrap">
+  <svg class="search-icon" width="16" height="16" viewBox="0 0 16 16" fill="none">
+    <circle cx="6.5" cy="6.5" r="4.5" stroke="currentColor" stroke-width="1.3"/>
+    <path d="M10 10l3 3" stroke="currentColor" stroke-width="1.3" stroke-linecap="round"/>
+  </svg>
+  <input type="text" id="fgt-input" placeholder="Search for your school by name or city…" autocomplete="off">
+</div>
+
+<div id="fgt-sugg" class="suggestions"></div>
+<div id="fgt-res"></div>
+
+<script>
+  var DONATE_URL = 'https://YOUR-CLASSY-LINK-HERE.com';
+  var TOTAL = 203;
+  var SCHOOLS = [
+    {name:'Lincoln Elementary',city:'San Jose',county:'Santa Clara',district:'San Jose Unified School District',level:'Elementary (K–5)',firstDay:'August 13, 2025',yrs:7,enroll:412,li:89,el:64},
+    {name:'Roosevelt Middle School',city:'San Jose',county:'Santa Clara',district:'East Side Union High School District',level:'Middle (6–8)',firstDay:'August 13, 2025',yrs:4,enroll:687,li:82,el:31},
+    {name:'Oakland High School',city:'Oakland',county:'Alameda',district:'Oakland Unified School District',level:'High (9–12)',firstDay:'August 12, 2025',yrs:9,enroll:1204,li:77,el:22},
+    {name:'Elmhurst United Middle School',city:'Oakland',county:'Alameda',district:'Oakland Unified School District',level:'Middle (6–8)',firstDay:'August 12, 2025',yrs:3,enroll:521,li:91,el:43},
+    {name:'Boronda Meadows Elementary School',city:'Salinas',county:'Monterey',district:'Salinas City Elementary School District',level:'Elementary (K–5)',firstDay:'August 20, 2025',yrs:6,enroll:348,li:95,el:71},
+    {name:'Richmond High School',city:'Richmond',county:'Contra Costa',district:'West Contra Costa Unified School District',level:'High (9–12)',firstDay:'August 14, 2025',yrs:5,enroll:1456,li:83,el:28}
+  ];
+
+  var inp = document.getElementById('fgt-input');
+  var sugg = document.getElementById('fgt-sugg');
+  var res = document.getElementById('fgt-res');
+  var matches = [];
+
+  // ── Auto-resize: report height to Classy parent ──
+  var lastHeight = 0;
+  function reportHeight() {
+    var h = document.body.scrollHeight;
+    if (h !== lastHeight) {
+      lastHeight = h;
+      window.parent.postMessage({ height: h }, '*');
+    }
+  }
+
+  // Report on load and after fonts
+  window.addEventListener('load', function() {
+    setTimeout(reportHeight, 100);
+  });
+  document.fonts && document.fonts.ready && document.fonts.ready.then(function() {
+    setTimeout(reportHeight, 100);
+  });
+
+  // Watch DOM for changes (result card appearing)
+  if (window.MutationObserver) {
+    var mo = new MutationObserver(function() {
+      setTimeout(reportHeight, 150);
+    });
+    mo.observe(document.body, { childList: true, subtree: true, attributes: false });
+  }
+
+  // ── Search logic ──
+  inp.addEventListener('input', function() {
+    var q = inp.value.trim().toLowerCase();
+    sugg.style.display = 'none';
+    sugg.innerHTML = '';
+    if (q.length < 2) { res.innerHTML = ''; reportHeight(); return; }
+
+    matches = SCHOOLS.filter(function(s) {
+      return s.name.toLowerCase().indexOf(q) !== -1 || s.city.toLowerCase().indexOf(q) !== -1;
+    });
+
+    if (!matches.length) { showNF(inp.value.trim()); return; }
+
+    res.innerHTML = '';
+    sugg.innerHTML = matches.map(function(s, i) {
+      return '<div class="suggestion-item" data-i="' + i + '">' +
+        '<div class="suggestion-name">' + s.name + '</div>' +
+        '<div class="suggestion-sub">' + s.city + ', ' + s.county + ' County &middot; ' + s.level + '</div>' +
+      '</div>';
+    }).join('');
+    sugg.style.display = 'block';
+
+    sugg.querySelectorAll('.suggestion-item').forEach(function(el) {
+      el.addEventListener('click', function() { pick(parseInt(el.dataset.i)); });
+    });
+  });
+
+  function pick(i) {
+    inp.value = matches[i].name;
+    sugg.style.display = 'none';
+    sugg.innerHTML = '';
+    showSchool(matches[i]);
+  }
+
+  function showSchool(s) {
+    var sinceYear = 2025 - s.yrs + 1;
+    var yt = s.yrs === 1 ? '1 year' : s.yrs + ' years';
+    var lic = Math.round(s.enroll * s.li / 100).toLocaleString();
+
+    res.innerHTML =
+      '<div class="card">' +
+        '<div class="card-head">' +
+          '<div class="card-top">' +
+            '<div>' +
+              '<div class="school-name">' + s.name + '</div>' +
+              '<div class="school-meta">' + s.city + ', ' + s.county + ' County &nbsp;&middot;&nbsp; ' + s.level + '<br>' + s.district + '</div>' +
+            '</div>' +
+            '<div class="badge">FGT Partner</div>' +
+          '</div>' +
+          '<div class="partnership">' +
+            '<svg width="14" height="14" viewBox="0 0 14 14" fill="none"><circle cx="7" cy="7" r="6" stroke="#0F6E56" stroke-width="1.3"/><path d="M7 4v3.5l2 1.5" stroke="#0F6E56" stroke-width="1.3" stroke-linecap="round"/></svg>' +
+            'FGT has partnered with this school for <strong>&nbsp;' + yt + '</strong>, since ' + sinceYear + '.' +
+          '</div>' +
+        '</div>' +
+        '<div class="first-day">' +
+          '<svg width="14" height="14" viewBox="0 0 14 14" fill="none"><rect x="1" y="2" width="12" height="11" rx="2" stroke="#185FA5" stroke-width="1.3"/><path d="M1 6h12" stroke="#185FA5" stroke-width="1.3"/><path d="M4 1v2M10 1v2" stroke="#185FA5" stroke-width="1.3" stroke-linecap="round"/></svg>' +
+          'First day of school: <strong style="margin-left:4px">' + s.firstDay + '</strong>' +
+        '</div>' +
+        '<div class="stats-grid">' +
+          '<div class="stat-box"><div class="stat-label">Students supported</div><div class="stat-value">' + s.enroll.toLocaleString() + '</div><div class="stat-unit">enrolled students</div></div>' +
+          '<div class="stat-box"><div class="stat-label">Low-income students</div><div class="stat-value">' + s.li + '%</div><div class="stat-unit">of student body</div></div>' +
+          '<div class="stat-box"><div class="stat-label">English learners</div><div class="stat-value">' + s.el + '%</div><div class="stat-unit">of student body</div></div>' +
+        '</div>' +
+        '<div class="about">Your donation helps provide backpacks and school supplies to all <strong>' + s.enroll.toLocaleString() + ' students</strong> at ' + s.name + ' — ' + lic + ' of whom qualify as low-income. Gifts to the 2025 Back-to-School Drive support FGT\'s ' + yt + ' partnership with this school and all ' + TOTAL + ' recipient schools across California.</div>' +
+        '<div class="card-foot">' +
+          '<div class="disclaimer">Gifts are not designated to a specific school — your donation supports all students across FGT\'s 2025 Back-to-School Drive.</div>' +
+          '<a class="donate-btn" href="' + DONATE_URL + '" target="_blank" rel="noopener">Donate to the drive</a>' +
+        '</div>' +
+      '</div>';
+  }
+
+  function showNF(q) {
+    res.innerHTML =
+      '<div class="not-found">' +
+        '<div class="nf-icon"><svg width="20" height="20" viewBox="0 0 20 20" fill="none"><circle cx="10" cy="10" r="8" stroke="#999" stroke-width="1.4"/><path d="M10 6v5" stroke="#999" stroke-width="1.4" stroke-linecap="round"/><circle cx="10" cy="13.5" r="0.75" fill="#999"/></svg></div>' +
+        '<div class="nf-title">We\'re not partnering with "' + q + '" this year</div>' +
+        '<div class="nf-body">FGT\'s 2025 Back-to-School Drive supports ' + TOTAL + ' schools across California.<br>Your donation still makes a difference for thousands of students.</div>' +
+        '<a class="donate-btn" href="' + DONATE_URL + '" target="_blank" rel="noopener">Donate to the drive</a>' +
+      '</div>';
+  }
+</script>
+</body>
+</html>
