@@ -15,7 +15,7 @@
   }
 
   /* ── SEARCH BAR ── */
-  .search-wrap { position: relative; margin-bottom: 12px; }
+  .search-wrap { position: relative; margin-bottom: 16px; }
 
   .search-icon {
     position: absolute;
@@ -47,59 +47,88 @@
     box-shadow: 0 0 0 3px rgba(0, 151, 197, 0.12);
   }
 
-  /* ── PLACEHOLDER ── */
-  .placeholder {
-    border: 1.5px dashed #d0d0d0;
-    border-radius: 12px;
-    padding: 24px 20px;
-    text-align: center;
-  }
-
-  .placeholder-title {
-    font-size: 14px;
+  /* ── FEATURED TILES ── */
+  .featured-label {
+    font-size: 11px;
     font-weight: 600;
-    color: #333;
-    margin-bottom: 20px;
-  }
-
-  .placeholder-stats {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 12px;
-    margin-bottom: 20px;
-  }
-
-  .ph-stat {
-    background: #f7f7f7;
-    border-radius: 10px;
-    padding: 14px 10px;
-  }
-
-  .ph-icon {
-    font-size: 20px;
-    margin-bottom: 6px;
-  }
-
-  .ph-value {
-    font-size: 18px;
-    font-weight: 700;
-    color: rgb(0, 151, 197);
-    line-height: 1;
-    margin-bottom: 3px;
-  }
-
-  .ph-label {
-    font-size: 10px;
     color: #888;
     text-transform: uppercase;
-    letter-spacing: 0.04em;
-    line-height: 1.3;
+    letter-spacing: 0.08em;
+    margin-bottom: 10px;
   }
 
-  .placeholder-hint {
+  .featured-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 10px;
+    margin-bottom: 12px;
+  }
+
+  .featured-tile {
+    border: 1px solid #e0e0e0;
+    border-radius: 10px;
+    overflow: hidden;
+    cursor: pointer;
+    transition: border-color 0.2s, box-shadow 0.2s;
+  }
+
+  .featured-tile:hover {
+    border-color: rgb(0, 151, 197);
+    box-shadow: 0 2px 8px rgba(0, 151, 197, 0.15);
+  }
+
+  .tile-header {
+    background: rgb(0, 151, 197);
+    padding: 8px 12px;
+  }
+
+  .tile-level {
+    font-size: 9px;
+    font-weight: 600;
+    color: rgba(255,255,255,0.8);
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    margin-bottom: 2px;
+  }
+
+  .tile-name {
+    font-size: 12px;
+    font-weight: 700;
+    color: #fff;
+    line-height: 1.25;
+  }
+
+  .tile-body {
+    padding: 10px 12px;
+  }
+
+  .tile-stat {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 4px 0;
+    border-bottom: 1px solid #f0f0f0;
+    font-size: 11px;
+  }
+
+  .tile-stat:last-child { border-bottom: none; }
+
+  .tile-stat-label { color: #888; }
+  .tile-stat-value { font-weight: 700; color: rgb(0, 151, 197); }
+
+  .tile-cta {
+    font-size: 10px;
+    color: rgb(0, 151, 197);
+    text-align: center;
+    padding: 6px 0 2px;
+    font-weight: 600;
+  }
+
+  .featured-hint {
     font-size: 12px;
     color: #999;
-    line-height: 1.5;
+    text-align: center;
+    padding: 4px 0 0;
   }
 
   /* ── SUGGESTIONS ── */
@@ -107,7 +136,8 @@
     background: #fff;
     border: 1px solid #ddd;
     border-radius: 10px;
-    margin-top: 4px;
+    margin-top: -8px;
+    margin-bottom: 8px;
     overflow: hidden;
     display: none;
   }
@@ -129,7 +159,6 @@
     border: 1px solid #e0e0e0;
     border-radius: 12px;
     overflow: hidden;
-    margin-top: 4px;
   }
 
   .card-head { padding: 1rem 1.25rem; border-bottom: 1px solid #eee; }
@@ -155,13 +184,13 @@
   .donate-btn:hover { background: #007fa8; }
 
   /* ── NOT FOUND ── */
-  .not-found { background: #fff; border: 1px solid #e0e0e0; border-radius: 12px; padding: 1.25rem; margin-top: 4px; text-align: center; }
+  .not-found { background: #fff; border: 1px solid #e0e0e0; border-radius: 12px; padding: 1.25rem; text-align: center; }
   .nf-title { font-size: 14px; font-weight: 600; color: #111; margin-bottom: 6px; }
   .nf-body { font-size: 12px; color: #666; line-height: 1.6; margin-bottom: 1rem; }
 
-  @media (max-width: 480px) {
+  @media (max-width: 520px) {
+    .featured-grid { grid-template-columns: 1fr; }
     .stats-grid { grid-template-columns: repeat(2, 1fr); }
-    .placeholder-stats { grid-template-columns: repeat(2, 1fr); }
     .card-top { flex-direction: column; }
   }
 </style>
@@ -177,41 +206,96 @@
 </div>
 
 <div id="fgt-sugg" class="suggestions"></div>
+
 <div id="fgt-res">
-  <!-- Default placeholder shown before any search -->
-  <div class="placeholder" id="fgt-placeholder">
-    <div class="placeholder-title">Find out if your local school is part of FGT's 2025 Back-to-School Drive</div>
-    <div class="placeholder-stats">
-      <div class="ph-stat">
-        <div class="ph-icon">🎒</div>
-        <div class="ph-value">203</div>
-        <div class="ph-label">Partner schools & organizations</div>
+  <!-- Featured tiles shown before any search -->
+  <div id="fgt-featured">
+    <div class="featured-label">Featured partner schools</div>
+    <div class="featured-grid">
+
+      <div class="featured-tile" onclick="selectFeatured(0)">
+        <div class="tile-header">
+          <div class="tile-level">Elementary · K–5</div>
+          <div class="tile-name">Encompass Academy Elementary</div>
+        </div>
+        <div class="tile-body">
+          <div class="tile-stat">
+            <span class="tile-stat-label">Students</span>
+            <span class="tile-stat-value">285</span>
+          </div>
+          <div class="tile-stat">
+            <span class="tile-stat-label">Low-income</span>
+            <span class="tile-stat-value">98.2%</span>
+          </div>
+          <div class="tile-stat">
+            <span class="tile-stat-label">FGT partner</span>
+            <span class="tile-stat-value">11 years</span>
+          </div>
+          <div class="tile-cta">See full profile →</div>
+        </div>
       </div>
-      <div class="ph-stat">
-        <div class="ph-icon">📍</div>
-        <div class="ph-value">9</div>
-        <div class="ph-label">Bay Area counties served</div>
+
+      <div class="featured-tile" onclick="selectFeatured(1)">
+        <div class="tile-header">
+          <div class="tile-level">Middle · 6–8</div>
+          <div class="tile-name">Antioch Middle School</div>
+        </div>
+        <div class="tile-body">
+          <div class="tile-stat">
+            <span class="tile-stat-label">Students</span>
+            <span class="tile-stat-value">300</span>
+          </div>
+          <div class="tile-stat">
+            <span class="tile-stat-label">Low-income</span>
+            <span class="tile-stat-value">94.6%</span>
+          </div>
+          <div class="tile-stat">
+            <span class="tile-stat-label">FGT partner</span>
+            <span class="tile-stat-value">12 years</span>
+          </div>
+          <div class="tile-cta">See full profile →</div>
+        </div>
       </div>
-      <div class="ph-stat">
-        <div class="ph-icon">⭐</div>
-        <div class="ph-value">30+</div>
-        <div class="ph-label">Years of community impact</div>
+
+      <div class="featured-tile" onclick="selectFeatured(2)">
+        <div class="tile-header">
+          <div class="tile-level">High School · 9–12</div>
+          <div class="tile-name">Richmond High School</div>
+        </div>
+        <div class="tile-body">
+          <div class="tile-stat">
+            <span class="tile-stat-label">Students</span>
+            <span class="tile-stat-value">110</span>
+          </div>
+          <div class="tile-stat">
+            <span class="tile-stat-label">Low-income</span>
+            <span class="tile-stat-value">97.3%</span>
+          </div>
+          <div class="tile-stat">
+            <span class="tile-stat-label">FGT partner</span>
+            <span class="tile-stat-value">10 years</span>
+          </div>
+          <div class="tile-cta">See full profile →</div>
+        </div>
       </div>
+
     </div>
-    <div class="placeholder-hint">Type your school name or city above to see partnership details, first day of school, and student demographics.</div>
+    <div class="featured-hint">Search above to find your school</div>
   </div>
 </div>
 
 <script>
   var DONATE_URL = 'https://YOUR-CLASSY-LINK-HERE.com';
   var TOTAL = 203;
+
   var SCHOOLS = [
-    {name:'Lincoln Elementary',city:'San Jose',county:'Santa Clara',district:'San Jose Unified School District',level:'Elementary (K–5)',firstDay:'August 13, 2025',yrs:7,enroll:412,li:89,el:64},
-    {name:'Roosevelt Middle School',city:'San Jose',county:'Santa Clara',district:'East Side Union High School District',level:'Middle (6–8)',firstDay:'August 13, 2025',yrs:4,enroll:687,li:82,el:31},
-    {name:'Oakland High School',city:'Oakland',county:'Alameda',district:'Oakland Unified School District',level:'High (9–12)',firstDay:'August 12, 2025',yrs:9,enroll:1204,li:77,el:22},
-    {name:'Elmhurst United Middle School',city:'Oakland',county:'Alameda',district:'Oakland Unified School District',level:'Middle (6–8)',firstDay:'August 12, 2025',yrs:3,enroll:521,li:91,el:43},
-    {name:'Boronda Meadows Elementary School',city:'Salinas',county:'Monterey',district:'Salinas City Elementary School District',level:'Elementary (K–5)',firstDay:'August 20, 2025',yrs:6,enroll:348,li:95,el:71},
-    {name:'Richmond High School',city:'Richmond',county:'Contra Costa',district:'West Contra Costa Unified School District',level:'High (9–12)',firstDay:'August 14, 2025',yrs:5,enroll:1456,li:83,el:28}
+    {name:'Encompass Academy Elementary',city:'Oakland',county:'Alameda',district:'Encompass Academy',level:'Elementary (K–5)',firstDay:'August 12, 2025',yrs:11,enroll:285,li:98.2},
+    {name:'Antioch Middle School',city:'Antioch',county:'Contra Costa',district:'Antioch Unified School District',level:'Middle (6–8)',firstDay:'August 14, 2025',yrs:12,enroll:300,li:94.6},
+    {name:'Richmond High School',city:'Richmond',county:'Contra Costa',district:'West Contra Costa Unified School District',level:'High (9–12)',firstDay:'August 14, 2025',yrs:10,enroll:110,li:97.3},
+    {name:'Lincoln Elementary',city:'San Jose',county:'Santa Clara',district:'San Jose Unified School District',level:'Elementary (K–5)',firstDay:'August 13, 2025',yrs:7,enroll:412,li:89},
+    {name:'Roosevelt Middle School',city:'San Jose',county:'Santa Clara',district:'East Side Union High School District',level:'Middle (6–8)',firstDay:'August 13, 2025',yrs:4,enroll:687,li:82},
+    {name:'Oakland High School',city:'Oakland',county:'Alameda',district:'Oakland Unified School District',level:'High (9–12)',firstDay:'August 12, 2025',yrs:9,enroll:1204,li:77},
+    {name:'Boronda Meadows Elementary School',city:'Salinas',county:'Monterey',district:'Salinas City Elementary School District',level:'Elementary (K–5)',firstDay:'August 20, 2025',yrs:6,enroll:348,li:95}
   ];
 
   var inp = document.getElementById('fgt-input');
@@ -219,13 +303,20 @@
   var res = document.getElementById('fgt-res');
   var matches = [];
 
+  function selectFeatured(i) {
+    var s = SCHOOLS[i];
+    inp.value = s.name;
+    sugg.style.display = 'none';
+    showSchool(s);
+  }
+
   inp.addEventListener('input', function() {
     var q = inp.value.trim().toLowerCase();
     sugg.style.display = 'none';
     sugg.innerHTML = '';
 
     if (q.length < 2) {
-      res.innerHTML = '<div class="placeholder" id="fgt-placeholder"><div class="placeholder-title">Find out if your local school is part of FGT\'s 2025 Back-to-School Drive</div><div class="placeholder-stats"><div class="ph-stat"><div class="ph-icon">🎒</div><div class="ph-value">203</div><div class="ph-label">Partner schools & organizations</div></div><div class="ph-stat"><div class="ph-icon">📍</div><div class="ph-value">9</div><div class="ph-label">Bay Area counties served</div></div><div class="ph-stat"><div class="ph-icon">⭐</div><div class="ph-value">30+</div><div class="ph-label">Years of community impact</div></div></div><div class="placeholder-hint">Type your school name or city above to see partnership details, first day of school, and student demographics.</div></div>';
+      res.innerHTML = '<div id="fgt-featured"><div class="featured-label">Featured partner schools</div><div class="featured-grid"><div class="featured-tile" onclick="selectFeatured(0)"><div class="tile-header"><div class="tile-level">Elementary · K–5</div><div class="tile-name">Encompass Academy Elementary</div></div><div class="tile-body"><div class="tile-stat"><span class="tile-stat-label">Students</span><span class="tile-stat-value">285</span></div><div class="tile-stat"><span class="tile-stat-label">Low-income</span><span class="tile-stat-value">98.2%</span></div><div class="tile-stat"><span class="tile-stat-label">FGT partner</span><span class="tile-stat-value">11 years</span></div><div class="tile-cta">See full profile →</div></div></div><div class="featured-tile" onclick="selectFeatured(1)"><div class="tile-header"><div class="tile-level">Middle · 6–8</div><div class="tile-name">Antioch Middle School</div></div><div class="tile-body"><div class="tile-stat"><span class="tile-stat-label">Students</span><span class="tile-stat-value">300</span></div><div class="tile-stat"><span class="tile-stat-label">Low-income</span><span class="tile-stat-value">94.6%</span></div><div class="tile-stat"><span class="tile-stat-label">FGT partner</span><span class="tile-stat-value">12 years</span></div><div class="tile-cta">See full profile →</div></div></div><div class="featured-tile" onclick="selectFeatured(2)"><div class="tile-header"><div class="tile-level">High School · 9–12</div><div class="tile-name">Richmond High School</div></div><div class="tile-body"><div class="tile-stat"><span class="tile-stat-label">Students</span><span class="tile-stat-value">110</span></div><div class="tile-stat"><span class="tile-stat-label">Low-income</span><span class="tile-stat-value">97.3%</span></div><div class="tile-stat"><span class="tile-stat-label">FGT partner</span><span class="tile-stat-value">10 years</span></div><div class="tile-cta">See full profile →</div></div></div></div><div class="featured-hint">Search above to find your school</div></div>';
       return;
     }
 
@@ -233,7 +324,7 @@
       return s.name.toLowerCase().indexOf(q) !== -1 || s.city.toLowerCase().indexOf(q) !== -1;
     });
 
-    if (!matches.length) { showNF(inp.value.trim()); return; }
+    if (!matches.length) { res.innerHTML = ''; showNF(inp.value.trim()); return; }
 
     res.innerHTML = '';
     sugg.innerHTML = matches.map(function(s, i) {
@@ -257,7 +348,7 @@
   }
 
   function showSchool(s) {
-    var sinceYear = 2025 - s.yrs + 1;
+    var sinceYear = 2026 - s.yrs;
     var yt = s.yrs === 1 ? '1 year' : s.yrs + ' years';
     var lic = Math.round(s.enroll * s.li / 100).toLocaleString();
 
@@ -283,7 +374,7 @@
         '<div class="stats-grid">' +
           '<div class="stat-box"><div class="stat-label">Students supported</div><div class="stat-value">' + s.enroll.toLocaleString() + '</div><div class="stat-unit">enrolled students</div></div>' +
           '<div class="stat-box"><div class="stat-label">Low-income students</div><div class="stat-value">' + s.li + '%</div><div class="stat-unit">of student body</div></div>' +
-          '<div class="stat-box"><div class="stat-label">English learners</div><div class="stat-value">' + s.el + '%</div><div class="stat-unit">of student body</div></div>' +
+          '<div class="stat-box"><div class="stat-label">Years partnered</div><div class="stat-value">' + s.yrs + '</div><div class="stat-unit">since ' + sinceYear + '</div></div>' +
         '</div>' +
         '<div class="about">Your donation helps provide backpacks and school supplies to all <strong>' + s.enroll.toLocaleString() + ' students</strong> at ' + s.name + ' — ' + lic + ' of whom qualify as low-income. Gifts to the 2025 Back-to-School Drive support FGT\'s ' + yt + ' partnership with this school and all ' + TOTAL + ' recipient schools across California.</div>' +
         '<div class="card-foot">' +
