@@ -8,198 +8,258 @@
 *{box-sizing:border-box;margin:0;padding:0}
 html,body{background:transparent;overflow:hidden}
 body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;padding:0 2px 8px;color:#111}
-input{width:100%;padding:11px 16px 11px 42px;font-size:15px;border:1px solid #ccc;border-radius:12px;background:#fff;color:#111;outline:none;display:block;-webkit-appearance:none;line-height:normal;font-family:inherit}
-input:focus{border-color:#378ADD;box-shadow:0 0 0 3px rgba(55,138,221,0.12)}
+
+.ticker-wrap{overflow:hidden;position:relative;margin-bottom:12px;mask-image:linear-gradient(to right,transparent,black 8%,black 92%,transparent);-webkit-mask-image:linear-gradient(to right,transparent,black 8%,black 92%,transparent)}
+.ticker-track{display:flex;gap:12px;width:max-content;animation:scroll 50s linear infinite}
+.ticker-track:hover{animation-play-state:paused}
+@keyframes scroll{0%{transform:translateX(0)}100%{transform:translateX(-50%)}}
+.school-tile{background:#fff;border:1px solid #e0e0e0;border-radius:12px;padding:14px 16px;min-width:196px;max-width:196px;cursor:pointer;transition:border-color 0.15s,box-shadow 0.15s}
+.school-tile:hover{border-color:#378ADD;box-shadow:0 2px 8px rgba(55,138,221,0.12)}
+.tile-level{font-size:10px;font-weight:600;color:#888;text-transform:uppercase;letter-spacing:0.06em;margin-bottom:4px}
+.tile-name{font-size:13px;font-weight:600;color:#111;line-height:1.3;margin-bottom:10px}
+.tile-stat{display:flex;justify-content:space-between;font-size:11px;padding:4px 0;border-bottom:1px solid #f0f0f0}
+.tile-stat:last-of-type{border-bottom:none}
+.tile-stat-label{color:#888}
+.tile-stat-value{font-weight:600;color:#185FA5}
+.tile-badge{display:inline-block;margin-top:10px;background:#E1F5EE;color:#085041;font-size:10px;font-weight:600;border-radius:20px;padding:2px 8px}
+
 .sw{position:relative;margin-bottom:10px}
 .si{position:absolute;left:13px;top:50%;transform:translateY(-50%);color:#888;pointer-events:none;display:flex}
-.sugg{background:#fff;border:1px solid #ccc;border-radius:12px;margin-top:4px;overflow:hidden;box-shadow:0 4px 12px rgba(0,0,0,0.08)}
+input{width:100%;padding:11px 16px 11px 42px;font-size:15px;border:1px solid #ccc;border-radius:12px;background:#fff;color:#111;outline:none;display:block;-webkit-appearance:none;line-height:normal;font-family:inherit}
+input:focus{border-color:#378ADD;box-shadow:0 0 0 3px rgba(55,138,221,0.12)}
+
+.sugg{background:#fff;border:1px solid #ddd;border-radius:12px;margin-top:4px;overflow:hidden;box-shadow:0 4px 12px rgba(0,0,0,0.08)}
 .ss{padding:10px 16px;font-size:14px;cursor:pointer;color:#111;border-bottom:1px solid #eee}
 .ss:last-child{border-bottom:none}
 .ss:hover{background:#f5f5f5}
 .sn{font-weight:600;font-size:14px;color:#111}
 .sm{font-size:12px;color:#666;margin-top:2px}
+
+.back-btn{display:inline-flex;align-items:center;gap:6px;font-size:13px;font-weight:500;color:#185FA5;cursor:pointer;background:none;border:none;padding:0 0 10px;font-family:inherit}
+.back-btn:hover{color:#0C447C}
+
 .card{background:#fff;border:1px solid #e0e0e0;border-radius:12px;overflow:hidden;margin-top:4px}
 .ch{padding:1.25rem;border-bottom:1px solid #eee}
-.cht{display:flex;align-items:flex-start;justify-content:space-between;gap:12px;margin-bottom:10px}
+.cht{display:flex;align-items:flex-start;justify-content:space-between;gap:12px;margin-bottom:8px}
 .cn{font-size:17px;font-weight:600;color:#111;line-height:1.3}
 .cm{font-size:13px;color:#666;margin-top:3px}
 .cbadge{background:#E1F5EE;border-radius:20px;padding:4px 12px;font-size:12px;font-weight:600;color:#085041;white-space:nowrap;flex-shrink:0}
 .cy{font-size:13px;color:#0F6E56;margin-top:8px;display:flex;align-items:center;gap:6px}
 .fd{background:#E6F1FB;padding:10px 1.25rem;display:flex;align-items:center;gap:8px;font-size:13px;color:#0C447C;border-bottom:1px solid #eee}
 .sg{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:10px;padding:1.25rem;border-bottom:1px solid #eee}
+.sg2{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px;padding:1.25rem;border-bottom:1px solid #eee}
 .sc{background:#f7f7f7;border-radius:8px;padding:12px 14px}
 .sl{font-size:12px;color:#666;margin-bottom:6px}
 .sv{font-size:22px;font-weight:600;color:#111}
 .su{font-size:11px;color:#888;margin-top:3px}
-.sg2{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px;padding:1.25rem;border-bottom:1px solid #eee}
 .ab{padding:1rem 1.25rem;border-bottom:1px solid #eee;font-size:13px;color:#555;line-height:1.6}
-.ft{padding:1rem 1.25rem;display:flex;align-items:center;justify-content:space-between;gap:12px;flex-wrap:wrap}
-.fd2{font-size:12px;color:#999;line-height:1.5;flex:1}
-.db{padding:10px 22px;font-size:14px;font-weight:600;background:#185FA5;color:#fff;border:none;border-radius:8px;cursor:pointer;white-space:nowrap;text-decoration:none;display:inline-block}
-.db:hover{background:#0C447C}
+.ft{padding:1rem 1.25rem}
+.fd2{font-size:12px;color:#999;line-height:1.5}
+
 .nf{background:#fff;border:1px solid #e0e0e0;border-radius:12px;padding:1.5rem 1.25rem;margin-top:4px;text-align:center}
 .nfi{width:44px;height:44px;border-radius:50%;background:#f5f5f5;display:flex;align-items:center;justify-content:center;margin:0 auto 12px}
 .nft{font-size:15px;font-weight:600;color:#111;margin-bottom:6px}
-.nfb{font-size:13px;color:#666;line-height:1.6;margin-bottom:1.25rem}
+.nfb{font-size:13px;color:#666;line-height:1.6}
 .loading{text-align:center;padding:1rem;font-size:13px;color:#888}
 @media(max-width:480px){.sg{grid-template-columns:repeat(2,minmax(0,1fr))}.cht{flex-direction:column}}
 </style>
 </head>
 <body>
 <div id="root">
+  <div id="ticker-section">
+    <div class="ticker-wrap">
+      <div class="ticker-track" id="ticker"><div class="loading">Loading schools…</div></div>
+    </div>
+  </div>
+
   <div class="sw">
     <svg class="si" width="16" height="16" viewBox="0 0 16 16" fill="none">
       <circle cx="6.5" cy="6.5" r="4.5" stroke="currentColor" stroke-width="1.3"/>
       <path d="M10 10l3 3" stroke="currentColor" stroke-width="1.3" stroke-linecap="round"/>
     </svg>
-    <input type="text" id="inp" placeholder="Search for your school by name or city…" autocomplete="off" disabled>
+    <input type="text" id="inp" placeholder="Search for your school by name or city…" autocomplete="off">
   </div>
   <div id="sugg" style="display:none"></div>
-  <div id="res"><div class="loading">Loading school data…</div></div>
+  <div id="res"></div>
 </div>
 
 <script>
-var SHEET_CSV_URL = 'https://docs.google.com/spreadsheets/d/e/2PACX-1vTRfWGeSqPvj365AN9eKf8E2C60uz84x1DIk9QrDkWPOcTP7xpZ92lrOEAZTirzDg/pub?output=csv';
-var DONATE_URL = 'https://give.familygivingtree.org/campaign/793669/donate';
-var TOTAL = 226;
-
-var allSchools = [];
-var active = null;
-var matches = [];
+var SHEET_CSV_URL='https://docs.google.com/spreadsheets/d/e/2PACX-1vTRfWGeSqPvj365AN9eKf8E2C60uz84x1DIk9QrDkWPOcTP7xpZ92lrOEAZTirzDg/pub?output=csv';
+var TOTAL=226;
+var allSchools=[];
+var active=null;
+var matches=[];
+var tickerSchools=[];
 
 function reportHeight(){
-  var h = document.getElementById('root').offsetHeight + 16;
-  window.parent.postMessage({fgtHeight: h}, '*');
+  var h=document.getElementById('root').offsetHeight+16;
+  window.parent.postMessage({fgtHeight:h},'*');
 }
 
-function parseCSV(text) {
-  var lines = text.trim().split('\n');
-  var headers = lines[0].split(',').map(function(h){ return h.trim().replace(/^"|"$/g,'').toLowerCase().trim(); });
+function levelLabel(s){
+  var l=(s.level||'').toLowerCase();
+  if(l.includes('elementary')) return 'Elementary';
+  if(l.includes('middle')) return 'Middle school';
+  if(l.includes('high')) return 'High school';
+  if(l.includes('district')) return 'District';
+  return s.level||'Partner org';
+}
+
+function buildTicker(schools){
+  var eligible=schools.filter(function(s){
+    return s.pct_low_income&&s.pct_low_income!=='Program'&&s.students_supported&&s.years_partnered;
+  });
+  if(!eligible.length){document.getElementById('ticker-section').style.display='none';return;}
+  tickerSchools=eligible.slice(0,12);
+  var doubled=tickerSchools.concat(tickerSchools);
+  document.getElementById('ticker').innerHTML=doubled.map(function(s,i){
+    var realIdx=i%tickerSchools.length;
+    return '<div class="school-tile" onclick="pickTicker('+realIdx+')">'+
+      '<div class="tile-level">'+levelLabel(s)+'</div>'+
+      '<div class="tile-name">'+s.name+'</div>'+
+      '<div class="tile-stat"><span class="tile-stat-label">Students</span><span class="tile-stat-value">'+parseInt(s.students_supported).toLocaleString()+'</span></div>'+
+      '<div class="tile-stat"><span class="tile-stat-label">Low-income</span><span class="tile-stat-value">'+parseFloat(s.pct_low_income).toFixed(1)+'%</span></div>'+
+      '<div class="tile-stat"><span class="tile-stat-label">FGT partner</span><span class="tile-stat-value">'+s.years_partnered+' yrs</span></div>'+
+      '<div class="tile-badge">FGT partner</div>'+
+    '</div>';
+  }).join('');
+}
+
+window.pickTicker=function(i){
+  var s=tickerSchools[i];
+  document.getElementById('inp').value=s.name;
+  document.getElementById('sugg').style.display='none';
+  document.getElementById('ticker-section').style.display='none';
+  showSchool(s);
+};
+
+window.goBack=function(){
+  document.getElementById('res').innerHTML='';
+  document.getElementById('sugg').style.display='none';
+  document.getElementById('inp').value='';
+  document.getElementById('ticker-section').style.display='block';
+  active=null;
+  setTimeout(reportHeight,50);
+};
+
+function parseCSV(text){
+  var lines=text.trim().split('\n');
+  var headers=lines[0].split(',').map(function(h){return h.trim().replace(/^"|"$/g,'').toLowerCase().trim();});
   return lines.slice(1).map(function(line){
-    // Handle quoted fields with commas
-    var cols = [];
-    var cur = '';
-    var inQ = false;
+    var cols=[],cur='',inQ=false;
     for(var i=0;i<line.length;i++){
-      var c = line[i];
-      if(c==='"'){ inQ=!inQ; }
-      else if(c===',' && !inQ){ cols.push(cur); cur=''; }
-      else { cur+=c; }
+      var c=line[i];
+      if(c==='"'){inQ=!inQ;}
+      else if(c===','&&!inQ){cols.push(cur);cur='';}
+      else{cur+=c;}
     }
     cols.push(cur);
-    var obj = {};
-    headers.forEach(function(h,i){ obj[h] = (cols[i]||'').trim().replace(/^"|"$/g,''); });
+    var obj={};
+    headers.forEach(function(h,i){obj[h]=(cols[i]||'').trim().replace(/^"|"$/g,'');});
     return obj;
-  }).filter(function(r){ return r.name && r.name.length > 0; });
+  }).filter(function(r){return r.name&&r.name.length>0;});
 }
 
-function showSchool(s) {
-  var sinceYear = s.years_partnered ? (2026 - parseInt(s.years_partnered) + 1) : null;
-  var yt = s.years_partnered == 1 ? '1 year' : s.years_partnered + ' years';
-  var isSchool = s.type === 'school';
-  var isDistrict = s.type === 'district';
-
-  var statsHTML = '';
-  if(isSchool || isDistrict) {
-    var stats = [];
-    if(s.students_supported) stats.push('<div class="sc"><div class="sl">Students receiving backpacks</div><div class="sv">'+parseInt(s.students_supported).toLocaleString()+'</div><div class="su">this drive</div></div>');
-    if(s.pct_low_income && s.pct_low_income !== 'Program') stats.push('<div class="sc"><div class="sl">Low-income students</div><div class="sv">'+parseFloat(s.pct_low_income).toFixed(1)+'%</div><div class="su">of student body</div></div>');
-    if(s.pct_english_learners) stats.push('<div class="sc"><div class="sl">English learners</div><div class="sv">'+parseFloat(s.pct_english_learners).toFixed(1)+'%</div><div class="su">of student body</div></div>');
-    if(stats.length > 0) {
-      var gridClass = stats.length === 2 ? 'sg2' : 'sg';
-      statsHTML = '<div class="'+gridClass+'">'+stats.join('')+'</div>';
-    }
-  } else {
-    // Agency — just show students supported
-    if(s.students_supported) {
-      statsHTML = '<div class="sg2"><div class="sc"><div class="sl">Students receiving backpacks</div><div class="sv">'+parseInt(s.students_supported).toLocaleString()+'</div><div class="su">this drive</div></div></div>';
-    }
-  }
-
-  var firstDayHTML = (isSchool && s.first_day) ? '<div class="fd"><svg width="14" height="14" viewBox="0 0 14 14" fill="none"><rect x="1" y="2" width="12" height="11" rx="2" stroke="#185FA5" stroke-width="1.3"/><path d="M1 6h12" stroke="#185FA5" stroke-width="1.3"/><path d="M4 1v2M10 1v2" stroke="#185FA5" stroke-width="1.3" stroke-linecap="round"/></svg>First day of school: <strong style="margin-left:4px">'+s.first_day+'</strong></div>' : '';
-
-  var yearsHTML = s.years_partnered ? '<div class="cy"><svg width="14" height="14" viewBox="0 0 14 14" fill="none"><circle cx="7" cy="7" r="6" stroke="#0F6E56" stroke-width="1.3"/><path d="M7 4v3.5l2 1.5" stroke="#0F6E56" stroke-width="1.3" stroke-linecap="round"/></svg>FGT has partnered with this organization for <strong>'+yt+'</strong>'+(sinceYear ? ', since '+sinceYear : '')+'.</div>' : '';
-
-  var narrativeHTML = s.narrative ? '<div class="ab">'+s.narrative+'</div>' : '';
-
-  var metaParts = [];
-  if(s.city) metaParts.push(s.city + (s.county ? ', '+s.county+' County' : ''));
+function showSchool(s){
+  document.getElementById('ticker-section').style.display='none';
+  document.getElementById('sugg').style.display='none';
+  var sinceYear=s.years_partnered?(2026-parseInt(s.years_partnered)+1):null;
+  var yt=s.years_partnered==1?'1 year':s.years_partnered+' years';
+  var isSchool=s.type==='school'||s.type==='district';
+  var stats=[];
+  if(s.students_supported) stats.push('<div class="sc"><div class="sl">Students receiving backpacks</div><div class="sv">'+parseInt(s.students_supported).toLocaleString()+'</div><div class="su">this drive</div></div>');
+  if(isSchool&&s.pct_low_income&&s.pct_low_income!=='Program') stats.push('<div class="sc"><div class="sl">Low-income students</div><div class="sv">'+parseFloat(s.pct_low_income).toFixed(1)+'%</div><div class="su">of student body</div></div>');
+  if(isSchool&&s.pct_english_learners) stats.push('<div class="sc"><div class="sl">English learners</div><div class="sv">'+parseFloat(s.pct_english_learners).toFixed(1)+'%</div><div class="su">of student body</div></div>');
+  var gridClass=stats.length===2?'sg2':'sg';
+  var statsHTML=stats.length?'<div class="'+gridClass+'">'+stats.join('')+'</div>':'';
+  var firstDayHTML=(isSchool&&s.first_day)?'<div class="fd"><svg width="14" height="14" viewBox="0 0 14 14" fill="none"><rect x="1" y="2" width="12" height="11" rx="2" stroke="#185FA5" stroke-width="1.3"/><path d="M1 6h12" stroke="#185FA5" stroke-width="1.3"/><path d="M4 1v2M10 1v2" stroke="#185FA5" stroke-width="1.3" stroke-linecap="round"/></svg>First day of school: <strong style="margin-left:4px">'+s.first_day+'</strong></div>':'';
+  var yearsHTML=s.years_partnered?'<div class="cy"><svg width="14" height="14" viewBox="0 0 14 14" fill="none"><circle cx="7" cy="7" r="6" stroke="#0F6E56" stroke-width="1.3"/><path d="M7 4v3.5l2 1.5" stroke="#0F6E56" stroke-width="1.3" stroke-linecap="round"/></svg>FGT has partnered with this organization for <strong>'+yt+'</strong>'+(sinceYear?', since '+sinceYear:'')+'.</div>':'';
+  var metaParts=[];
+  if(s.city) metaParts.push(s.city+(s.county?', '+s.county+' County':''));
   if(s.level) metaParts.push(s.level);
   if(s.district) metaParts.push(s.district);
-
-  document.getElementById('res').innerHTML =
+  document.getElementById('res').innerHTML=
+    '<button class="back-btn" onclick="goBack()">'+
+      '<svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M9 2L4 7l5 5" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/></svg>'+
+      'Search again'+
+    '</button>'+
     '<div class="card">'+
       '<div class="ch">'+
         '<div class="cht">'+
-          '<div><div class="cn">'+s.name+'</div>'+(metaParts.length ? '<div class="cm">'+metaParts.join(' &nbsp;&middot;&nbsp; ')+'</div>' : '')+'</div>'+
-          '<div class="cbadge">FGT Partner</div>'+
-        '</div>'+
-        yearsHTML+
+          '<div><div class="cn">'+s.name+'</div>'+(metaParts.length?'<div class="cm">'+metaParts.join(' &nbsp;&middot;&nbsp; ')+'</div>':'')+
+          '</div><div class="cbadge">FGT Partner</div>'+
+        '</div>'+yearsHTML+
       '</div>'+
       firstDayHTML+
       statsHTML+
-      narrativeHTML+
-      '<div class="ft">'+
-        '<div class="fd2">Gifts are not designated to a specific school — your donation supports all students across FGT\'s 2026 Back-to-School Drive.</div>'+
-      '</div>'+
+      (s.narrative?'<div class="ab">'+s.narrative+'</div>':'')+
+      '<div class="ft"><div class="fd2">Gifts are not designated to a specific school — your donation supports all students across FGT\'s 2026 Back-to-School Drive.</div></div>'+
     '</div>';
-  setTimeout(reportHeight, 50);
+  setTimeout(reportHeight,50);
 }
 
-function showNF(q) {
-  document.getElementById('res').innerHTML =
+function showNF(q){
+  document.getElementById('ticker-section').style.display='none';
+  document.getElementById('res').innerHTML=
+    '<button class="back-btn" onclick="goBack()">'+
+      '<svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M9 2L4 7l5 5" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/></svg>'+
+      'Search again'+
+    '</button>'+
     '<div class="nf">'+
       '<div class="nfi"><svg width="20" height="20" viewBox="0 0 20 20" fill="none"><circle cx="10" cy="10" r="8" stroke="#999" stroke-width="1.4"/><path d="M10 6v5" stroke="#999" stroke-width="1.4" stroke-linecap="round"/><circle cx="10" cy="13.5" r="0.75" fill="#999"/></svg></div>'+
       '<div class="nft">We\'re not partnering with "'+q+'" this year</div>'+
-      '<div class="nfb">FGT\'s 2026 Back-to-School Drive supports '+TOTAL+' schools and organizations across California.<br>Your donation still makes a difference for thousands of students in your community.</div>'+
-
+      '<div class="nfb">FGT\'s 2026 Back-to-School Drive supports '+TOTAL+' schools and organizations across California. Your donation still makes a difference for thousands of students in your community.</div>'+
     '</div>';
-  setTimeout(reportHeight, 50);
+  setTimeout(reportHeight,50);
 }
 
-function pick(i) {
-  active = matches[i];
-  document.getElementById('inp').value = active.name;
-  document.getElementById('sugg').style.display = 'none';
+function pick(i){
+  active=matches[i];
+  document.getElementById('inp').value=active.name;
+  document.getElementById('sugg').style.display='none';
   showSchool(active);
 }
 
-var inp = document.getElementById('inp');
-inp.addEventListener('input', function(){
-  var q = this.value.trim().toLowerCase();
-  var sugg = document.getElementById('sugg');
-  sugg.style.display = 'none';
-  if(q.length < 2){ if(!active) document.getElementById('res').innerHTML=''; reportHeight(); return; }
-  matches = allSchools.filter(function(s){
-    return s.name.toLowerCase().includes(q) || (s.city||'').toLowerCase().includes(q) || (s.district||'').toLowerCase().includes(q);
+var inp=document.getElementById('inp');
+inp.addEventListener('input',function(){
+  var q=this.value.trim().toLowerCase();
+  var sugg=document.getElementById('sugg');
+  sugg.style.display='none';
+  if(q.length<2){
+    if(!active){
+      document.getElementById('res').innerHTML='';
+      document.getElementById('ticker-section').style.display='block';
+    }
+    reportHeight();return;
+  }
+  matches=allSchools.filter(function(s){
+    return s.name.toLowerCase().includes(q)||(s.city||'').toLowerCase().includes(q)||(s.district||'').toLowerCase().includes(q);
   });
-  if(!matches.length){ showNF(this.value.trim()); active=null; return; }
-  document.getElementById('res').innerHTML=''; active=null;
-  sugg.innerHTML = matches.slice(0,8).map(function(s,i){
-    var sub = [s.city, s.county ? s.county+' County' : '', s.level].filter(Boolean).join(' · ');
+  if(!matches.length){showNF(this.value.trim());active=null;return;}
+  document.getElementById('res').innerHTML='';active=null;
+  document.getElementById('ticker-section').style.display='none';
+  sugg.innerHTML=matches.slice(0,8).map(function(s,i){
+    var sub=[s.city,s.county?s.county+' County':'',s.level].filter(Boolean).join(' · ');
     return '<div class="ss" data-i="'+i+'"><div class="sn">'+s.name+'</div><div class="sm">'+sub+'</div></div>';
   }).join('');
-  sugg.style.display = 'block';
+  sugg.style.display='block';
   sugg.querySelectorAll('.ss').forEach(function(el){
-    el.addEventListener('click', function(){ pick(parseInt(el.dataset.i)); });
+    el.addEventListener('click',function(){pick(parseInt(el.dataset.i));});
   });
   reportHeight();
 });
 
-// Load from Google Sheets
 fetch(SHEET_CSV_URL)
-  .then(function(r){ return r.text(); })
+  .then(function(r){return r.text();})
   .then(function(text){
-    allSchools = parseCSV(text);
-    inp.disabled = false;
-    inp.placeholder = 'Search for your school by name or city…';
-    document.getElementById('res').innerHTML = '';
+    allSchools=parseCSV(text);
+    buildTicker(allSchools);
+    inp.placeholder='Search for your school by name or city…';
     reportHeight();
   })
   .catch(function(){
-    inp.disabled = false;
-    inp.placeholder = 'Search for your school by name or city…';
-    document.getElementById('res').innerHTML = '<div class="loading" style="color:#c00">Could not load school data. Please try refreshing.</div>';
+    document.getElementById('ticker-section').style.display='none';
+    inp.placeholder='Search for your school by name or city…';
     reportHeight();
   });
 
